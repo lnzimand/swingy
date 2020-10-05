@@ -32,12 +32,10 @@ public class GuiPages {
         mainWindow = new JPanel();
         startPage = getSPage();
         createHeroPage = getCHPPanel();
-        selectHeroPage = getSHPPanel();
         cardLayout = new CardLayout();
         mainWindow.setLayout(cardLayout);
         mainWindow.add(startPage, "Start Page");
         mainWindow.add(createHeroPage, "Create Hero");
-        mainWindow.add(selectHeroPage, "Select Hero");
         cardLayout.show(mainWindow, "Start Page");
         window.add(mainWindow);
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
@@ -60,7 +58,12 @@ public class GuiPages {
 
         jButton2.setText("SELECT HERO");
         jButton2.addActionListener(evt -> {
-            cardLayout.show(mainWindow, "Select Hero");
+            ArrayList<PlayerCharacter> heroes = controller.getHeroes();
+            if (!heroes.isEmpty()){
+                selectHeroPage = getSHPPanel();
+                mainWindow.add(selectHeroPage, "Select Hero");
+                cardLayout.show(mainWindow, "Select Hero");
+            } else info("No heroes exist, create hero");
         });
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -227,6 +230,7 @@ public class GuiPages {
         JTextArea jTextArea1 = new JTextArea();
         JButton jButton1 = new JButton();
         ArrayList<PlayerCharacter> heroes = controller.getHeroes();
+
         if (value2 == null) value2 = controller.getHeroes().get(0).getName();
         if (heroInformation == null) heroInformation = HeroInformation.getTextHeroInfo(heroes.get(0));
 
@@ -447,7 +451,7 @@ public class GuiPages {
                 } else {
                     textArea.append("*");
                 }
-                textArea.append("  ");
+                textArea.append("   ");
             }
             textArea.append("\n");
         }

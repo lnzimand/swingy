@@ -364,4 +364,12 @@ public class Database {
         return className;
     }
 
+    public void setCreateTable() {
+        try {
+            getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }

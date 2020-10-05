@@ -25,6 +25,7 @@ public class Controller {
 
     public Controller() {
         database = new Database();
+        database.setCreateTable();
     }
 
     public void toStartPage() {
@@ -181,7 +182,7 @@ public class Controller {
             if (fiftyFifty()) {
                 battle();
                 if (player.getHealth() < 1) {
-                    if (App.GUI) GuiPages.gameOver("COULDN'T RUN FASTER AND THE VILLAIN CAUGHT YOU\nYOU LOST THE\nFIGHT");
+                    if (App.GUI) GuiPages.gameOver("COULDN'T RUN FASTER AND THE VILLAIN CAUGHT YOU\nYOU LOST THE FIGHT");
                     else ConsoleUI.guiGameOverConsole("COULDN'T RUN FASTER AND THE VILLAIN CAUGHT YOU\nYOU LOST THE\nFIGHT", this, database);
                 } else {
                     player.getMap().setCell(player.getCoordinates().getX(),
